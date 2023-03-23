@@ -77,6 +77,7 @@ main {
     justify-items: center;
     align-items: stretch;
     min-block-size: calc(100vb - 90px);
+    background-color: var(--secondary-bg-color);
 }
 
 .game-instructions {
