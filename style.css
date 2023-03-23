@@ -39,7 +39,6 @@ body {
     "header"
     "main"
     "footer";
-    gap: 1rem;
     min-block-size: 100vb;
 }
 
@@ -73,10 +72,11 @@ main {
     grid-template-areas: 
     "game-instructions"
     "gameboard";
-    place-items: center;
-    gap: 1rem;
-    padding-block: 1rem 2rem;
+    padding-block: 2rem;
     padding-inline: 1rem;
+    justify-items: center;
+    align-items: stretch;
+    min-block-size: calc(100vb - 90px);
 }
 
 .game-instructions {
@@ -89,10 +89,37 @@ main {
     font-weight: bold;
 }
 
+.gameboard {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    grid-template-rows: repeat(3, minmax(100px, 1fr));
+    gap: 3px;
+    background-color: var(--primary-bg-color);
+    border-block: 3px solid black;
+    border-inline: 3px solid black;
+    margin-block: 2rem;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 4rem;
+    background-color: white;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.box:hover,
+.box:focus {
+    background-color: var(--secondary-bg-color);
+}
+
 .modal-scoreboard {
     position: fixed;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.9);
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -107,6 +134,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     gap: 2rem;
     padding-block: 2rem;
     padding-inline: 2rem;
@@ -139,6 +167,7 @@ main {
     gap: 2rem;
 }
 
+.clear-board-btn,
 .modal-buttons > button {
     padding-block: 1rem;
     padding-inline: 1rem;
@@ -147,6 +176,12 @@ main {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.clear-board-btn {
+    color: var(--secondary-text-color);
+    background-color: var(--primary-bg-color);
 }
 
 .reset-btn {
@@ -154,37 +189,8 @@ main {
     background-color: var(--primary-bg-color);
 }
 
+.clear-board-btn:hover,
 .cancel-btn {
     color: var(--secondary-text-color);
     background-color: red;
-}
-
-.gameboard {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    grid-template-rows: repeat(3, auto);
-    gap: 3px;
-    justify-items: center;
-    align-items: center;
-    background-color: var(--primary-bg-color);
-    border-block: 3px solid black;
-    border-inline: 3px solid black;
-}
-
-.box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 4rem;
-    block-size: 100px;
-    inline-size: 100px;
-    background-color: white;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-}
-
-.box:hover,
-.box:focus {
-    background-color: var(--secondary-bg-color);
 }

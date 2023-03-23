@@ -62,6 +62,7 @@ const gameController = (() => {
     let winner = null;
   
     const boxes = document.querySelectorAll(".box");
+    const clearBoardBtn = document.querySelector(".clear-board-btn");
     const resetBtn = document.querySelector(".reset-btn");
     const cancelBtn = document.querySelector(".cancel-btn");
     const closeBtn = document.querySelector(".close-btn");
@@ -140,6 +141,9 @@ const gameController = (() => {
     boxes.forEach((box) => {
       box.addEventListener("click", addMove);
     });
+
+     // Add event listener to the clear-board button
+     clearBoardBtn.addEventListener("click", resetGame);
   
     // Add event listener to the reset button
     resetBtn.addEventListener("click", resetGame);
