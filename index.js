@@ -56,8 +56,9 @@ const displayController = (() => {
     return { render };
 })();
   
-// Create a function that handles player moves, checks if the selected box is empty before adding the player's symbol and checks if the game is over after each move
+// Create a module for the game controller that handles player moves, checks if the selected box is empty before adding the player's symbol and checks if the game is over after each move
 const gameController = (() => {
+    // Initialize the current player to player1 and the winner to null
     let currentPlayer = player1;
     let winner = null;
   
@@ -69,25 +70,36 @@ const gameController = (() => {
     const modal = document.querySelector(".modal-scoreboard");
     const message = document.querySelector(".message");
   
+    // Add a move to the Tic Tac Toe game board
     const addMove = (event) => {
+      // Get the index of the move from the clicked element's data-box attribute
       const index = event.target.getAttribute("data-box");
+      // Check if the move is valid (i.e., the box is empty and there is no winner yet)
       if (gameboard.getBoard()[index] === "" && winner === null) {
+        // Update the game board with the new move
         gameboard.updateBoard(index, currentPlayer);
+        // Render the updated game board on the screen
         displayController.render(gameboard.getBoard());
+        // Check if there is a winner or a tie
         if (checkForWinner()) {
           winner = currentPlayer;
           declareWinner();
         } else if (checkForTie()) {
           declareTie();
         } else {
+          // If the game is still in progress, switch to the other player and update the instruction
           currentPlayer = currentPlayer === player1 ? player2 : player1;
           updateInstruction();
         }
       }
     };
   
+    // Check if there is a winner in the Tic Tac Toe game
     const checkForWinner = () => {
+      // Get the current game board state
       const board = gameboard.getBoard();
+
+      // Define the winning combinations as an array of arrays
       const winningCombos = [
         [0, 1, 2],
         [3, 4, 5],
@@ -98,42 +110,65 @@ const gameController = (() => {
         [0, 4, 8],
         [2, 4, 6],
       ];
+
+      // Iterate over each winning combination and check if the values in the board match
       for (let i = 0; i < winningCombos.length; i++) {
+        // Destructure the winning combination into three separate variables
         const [a, b, c] = winningCombos[i];
+        // If the values at the corresponding indexes in the board match, return true
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
           return true;
         }
       }
+      // If no winning combination was found, return false
       return false;
     };
-  
+    // Check if the game is tied
     const checkForTie = () => {
+      // Get the current state of the game board
       const board = gameboard.getBoard();
+      // Check if every box on the game board has been filled
       return board.every((box) => box !== "");
     };
   
+    // Declare the winner of the game
     const declareWinner = () => {
+      // Get the name of the winner
       const winnerName = winner.getName();
+      // Set the message text to display the winner's name
       message.textContent = `${winnerName} wins!`;
+      // Display the modal that shows the winner
       modal.style.display = "flex";
     };
   
+    // Declare that the game has ended in a tie
     const declareTie = () => {
+      // Set the message text to indicate a tie
       message.textContent = "It's a tie!";
       modal.style.display = "flex";
     };
-  
+
+    // Reset the game board and start a new game
     const resetGame = () => {
+      // Reset the game board
       gameboard.resetBoard();
+      // Render the reset game board on the screen
       displayController.render(gameboard.getBoard());
+      // Set the current player to player1
       currentPlayer = player1;
+      // Reset the winner variable
       winner = null;
+      // Hide the modal
       modal.style.display = "none";
+      // Update the instruction to show which player's turn it is
       updateInstruction();
     };
-  
+
+    // Update the instruction that tells the player whose turn it is
     const updateInstruction = () => {
+      // Get the instruction element
       const instruction = document.querySelector(".instruction");
+      // Set the text of the instruction to indicate whose turn it is
       instruction.textContent = `It's ${currentPlayer.getName()}'s turn`;
     };
   

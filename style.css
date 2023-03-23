@@ -180,8 +180,7 @@ main {
     transition: all 0.2s ease-in-out;
 }
 
-.clear-board-btn,
-.clear-board-btn:visited {
+.clear-board-btn {
     color: var(--secondary-text-color);
     background-color: var(--primary-bg-color);
 }
