@@ -1,0 +1,179 @@
+html {
+    font-size: 100%;
+    font-family: Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary-text-color: #000000;
+    --secondary-text-color: #ffffff;
+    --primary-bg-color: #000000;
+    --secondary-bg-color: #f0f0f0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding-block: 0;
+    padding-inline: 0;
+    padding: 0;
+    margin-block: 0;
+    margin-inline: 0;
+    margin: 0;
+    outline: 0;
+}
+
+body {
+    color: var(--primary-text-color);
+    background-color: white;
+    font-size: 1rem;
+}
+
+.page-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+    "header"
+    "main"
+    "footer";
+    gap: 1rem;
+    min-block-size: 100vb;
+}
+
+header {
+    grid-area: header;
+    padding-block: 1rem;
+    padding-inline: 1rem;
+    text-align: center;
+    background-color: var(--secondary-bg-color);
+    border-block-end: 3px solid #dddddd;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+footer {
+    grid-area: footer;
+    padding-block: 1rem;
+    padding-inline: 1rem;
+    text-align: center;
+    background-color: #f0f0f0;
+    border-block-start: 3px solid #ddd;
+}
+
+main {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+    "game-instructions"
+    "gameboard";
+    place-items: center;
+    gap: 1rem;
+    padding-block: 1rem 2rem;
+    padding-inline: 1rem;
+}
+
+.game-instructions {
+    display: flex;
+    align-items: center;
+}
+
+.instruction {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.modal-scoreboard {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding-block: 1rem;
+    padding-inline: 1rem;
+}
+
+.scoreboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding-block: 2rem;
+    padding-inline: 2rem;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.close-btn {
+    position: absolute;
+    inset-block-start: 2rem;
+    inset-inline-end: 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+}
+
+.message {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.modal-buttons {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.modal-buttons > button {
+    padding-block: 1rem;
+    padding-inline: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+}
+
+.reset-btn {
+    color: var(--secondary-text-color);
+    background-color: var(--primary-bg-color);
+}
+
+.cancel-btn {
+    color: var(--secondary-text-color);
+    background-color: red;
+}
+
+.gameboard {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+    gap: 3px;
+    justify-items: center;
+    align-items: center;
+    background-color: var(--primary-bg-color);
+    border-block: 3px solid black;
+    border-inline: 3px solid black;
+}
+
+.box {
+    block-size: 100px;
+    inline-size: 100px;
+    background-color: white;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.box:hover,
+.box:focus {
+    background-color: var(--secondary-bg-color);
+}
