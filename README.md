@@ -2,4 +2,4 @@
 
 Created a Tic Tac Toe game using HTML, CSS and vanilla Javascript. The project was an assignment for the Odin Project curriculum.
 
-See the finished project live here: 
+Play the game and see the finished project here: https://stepanstas.github.io/project-tic-tac-toe/
