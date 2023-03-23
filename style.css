@@ -112,6 +112,10 @@ main {
     padding-inline: 2rem;
     background-color: white;
     border-radius: 5px;
+    inline-size: auto;
+    max-inline-size: 90%;
+    block-size: auto;
+    max-block-size: 90%;
 }
 
 .close-btn {
@@ -121,6 +125,7 @@ main {
     font-size: 2rem;
     font-weight: bold;
     color: white;
+    cursor: pointer;
 }
 
 .message {
@@ -141,6 +146,7 @@ main {
     font-weight: bold;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .reset-btn {
@@ -166,6 +172,11 @@ main {
 }
 
 .box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 4rem;
     block-size: 100px;
     inline-size: 100px;
     background-color: white;
